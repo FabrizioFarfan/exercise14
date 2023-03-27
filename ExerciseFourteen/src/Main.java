@@ -20,7 +20,7 @@ public class Main {
         int yearsPast = 0;
         double interestGainedThisYearEuros = 0;
 
-        while (yearsPast < 6 || currentInvestmentValueEuros <= 15_000) {
+        while (yearsPast <= 5 || currentInvestmentValueEuros <= 15_000) {
             System.out.println("Investment value = €" + currentInvestmentValueEuros + " after " + yearsPast++ + " years" +
                     ", interest this year €" + interestGainedThisYearEuros);
             double previousYearsInvestment = currentInvestmentValueEuros;
@@ -52,22 +52,22 @@ public class Main {
         System.out.println("Exercise 2 - Selling the pound:");
         double poundToEuroExchangeRate = 1 + (Math.random() * 0.2);
         int daysToSell = 0;
-        double remainingPoundsToSell = 10_000;
+        int remainingPoundsToSell = 10_000;
         int maxPoundsToSellPerDay = 1_000;
 
-        while ( remainingPoundsToSell > 0) {
-            poundToEuroExchangeRate = 1 + (Math.random() * 0.2);
-            if (poundToEuroExchangeRate>1.15){
-                daysToSell++;
-                double poundToSell = poundToEuroExchangeRate * maxPoundsToSellPerDay;
-                remainingPoundsToSell= remainingPoundsToSell - poundToSell;
-
+        while (remainingPoundsToSell > 0) {
+            daysToSell++;
+            if (poundToEuroExchangeRate >= 1.15) {
+                remainingPoundsToSell = remainingPoundsToSell - maxPoundsToSellPerDay;
+                System.out.println("Day: " + daysToSell + " Rate: " + poundToEuroExchangeRate + " We sell: " + maxPoundsToSellPerDay + "£");
+            }else{
+                System.out.println("We cant sell today, the exchange rate is " + poundToEuroExchangeRate);
             }
-
+            poundToEuroExchangeRate = 1 + (Math.random() * 0.2);
         }
-
-        System.out.println("It took " + daysToSell + " to exit that cursed economy");
+        System.out.println("It took " + daysToSell + " day to exit that cursed economy");
     }
+
 
     /**
      * 3: Write answers below for the following 4 situations, should we use a while, do while, fori or for each loop?
